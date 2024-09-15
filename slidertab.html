@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .main-acc-box{
+        display: flex;
+        justify-content: space-between;
+        font-family: "Yekan Bakh";
+        direction: ltr;
+        column-gap: 60px;
+        }
+        .accordion-container {
+        flex: 5;
+        border-radius: 16px;
+        border: 1px solid var(--200, #E4E7EC);
+        }
+        .images-container {
+        flex: 7;
+        }
+        .images-container.mobile-show {
+        display: none;
+        }
+        .accordion-header {
+        cursor: pointer;
+        padding: 28px;
+        background: var(--50, #F9FAFB);
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: flex-start;
+
+        }
+        .item-img-box{
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        }
+        .item-img-box span{
+        color: var(--500, #667085);
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        padding-left:12px;
+        }
+        .item-img-box svg{
+        background: #667085;
+        padding: 4px;
+        border-radius: 8px;
+        width: 32px;
+        height: 32px;
+        }
+        .acc-active .item-icon-arrow{
+        transition:0.3s all;
+        }
+        .acc-active .item-img-box span{
+        color: #1C7EF4;
+        font-weight: 900;
+        }
+        .acc-active .item-img-box img{
+        filter: invert(0%) sepia(90%) saturate(657%) hue-rotate(187deg) brightness(90%) contrast(153%);
+        }
+        .acc-active .item-img-box svg{
+        background: #1C7EF4;
+        }
+        .acc-active .item-icon-arrow{
+        transform: rotate(180deg);
+        }
+        .acc-active .item-icon-arrow path{
+        stroke:#1C7EF4;
+        }
+        .accordion-content {
+        display: none;
+        padding: 28px;
+        background: #FFF;
+        text-align:left;
+        position: relative;
+        }
+        .progress-bar-container {
+        width: 2px;
+        background-color: #eee;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        }
+        .progress-bar {
+        height: 0px;
+        background-color: #1C7EF4;
+        width: 2px;
+        }
+        /*-------------------------------------*/
+        /*------------- RESPONSIVE ------------*/
+        /*-------------------------------------*/
+        @media screen and ( max-width: 767px ){
+            .images-container {
+                display: none;
+            }
+            .images-container.mobile-show {
+                display: flex;
+            }
+            .images-container.mobile-show img{
+                width: 100%;
+                height:auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-acc-box">
+        <div class="accordion-container">
+    
+            <!--------------- item 1 --------------->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <div class="item-img-box">
+                      <span>Title One </span>   
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M16.6636 6.0003L12.9549 9.88485L10.4964 7.30918C10.3076 7.11144 10.0463 6.99921 9.77295 6.99921C9.49969 6.99921 9.23829 7.11144 9.04961 7.30918L4.27671 12.31C3.89526 12.7093 3.91006 13.342 4.30949 13.7235C4.70905 14.1049 5.34207 14.0896 5.72339 13.6903L9.77295 9.44854L12.2315 12.0242C12.4202 12.2219 12.6816 12.3329 12.9549 12.3329C13.2283 12.3329 13.4897 12.2219 13.6784 12.0242L18.0007 7.49543V8.99951C18.0007 9.55189 18.4483 9.99966 19.0007 9.99966C19.553 9.99966 20.0008 9.55189 20.0008 8.99951V5.00272C20.0008 4.99634 20.0006 4.98995 20.0006 4.98485C19.9986 4.8509 19.9702 4.72206 19.9203 4.60597C19.8698 4.48733 19.7955 4.37762 19.6975 4.28194C19.6887 4.27429 19.6797 4.26534 19.6705 4.25769C19.5813 4.17604 19.4813 4.11482 19.3755 4.07272C19.2598 4.02552 19.1333 4 19.0007 4H15.0005C14.4481 4 14.0005 4.44777 14.0005 5.00015C14.0005 5.55253 14.4481 6.0003 15.0005 6.0003H16.6636Z" fill="#F9FAFB"/>
+                            <path d="M17.001 13C17.5533 13 18.0011 13.4478 18.0011 14.0002V18.9997C18.0011 19.552 17.5533 19.9998 17.001 19.9998C16.4486 19.9998 16.001 19.552 16.001 18.9997V14.0002C16.001 13.4478 16.4486 13 17.001 13Z" fill="#F9FAFB"/>
+                            <path d="M11.9998 15C12.5521 15 12.9999 15.4478 12.9999 15.9989V18.9993C12.9999 19.5517 12.5521 19.9995 11.9998 19.9995C11.4474 19.9995 10.9998 19.5517 10.9998 18.9993V15.9989C10.9998 15.4478 11.4474 15 11.9998 15Z" fill="#F9FAFB"/>
+                            <path d="M8.0001 18.0002C8.0001 17.4478 7.55232 17 7.00005 17C6.44778 17 6 17.4478 6 18.0002V19.0003C6 19.5527 6.44778 20.0005 7.00005 20.0005C7.55232 20.0005 8.0001 19.5527 8.0001 19.0003V18.0002Z" fill="#F9FAFB"/>
+                            </svg>
+                          
+                    </div>
+                    <svg class="item-icon-arrow" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="Frame">
+                        <path id="Vector" d="M11.293 14.3203L15.9997 19.0136L20.7063 14.3203" stroke="#98A2B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="accordion-content">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea               </p>
+                    <div class="images-container mobile-show">
+                        <!-- Image will be dynamically inserted here -->
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+            <!--------------- item 2 --------------->
+           <div class="accordion-item">
+                <div class="accordion-header">
+                    <div class="item-img-box">
+                      <span>Title Two</span> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4 6.41303C4 5.08064 5.07988 4 6.41275 4H8.69861C10.0315 4 11.1114 5.08064 11.1114 6.41303V8.69905C11.1114 10.0314 10.0315 11.111 8.69861 11.111H6.41275C5.07988 11.111 4 10.0314 4 8.69905V6.41303ZM6.41275 5.77802C6.06179 5.77802 5.77784 6.0615 5.77784 6.41303V8.69905C5.77784 9.04944 6.06179 9.33406 6.41275 9.33406H8.69861C9.04957 9.33406 9.33351 9.04944 9.33351 8.69905V6.41303C9.33351 6.0615 9.04957 5.77802 8.69861 5.77802H6.41275Z" fill="white"/>
+                            <path d="M13.6292 4.59277C13.1381 4.59277 12.7402 4.99078 12.7402 5.48178C12.7402 5.97278 13.1381 6.37083 13.6292 6.37083C15.8386 6.37083 17.6292 8.16131 17.6292 10.3702C17.6292 10.8612 18.0273 11.2592 18.5182 11.2592C19.0092 11.2592 19.4071 10.8612 19.4071 10.3702C19.4071 7.17931 16.8205 4.59277 13.6292 4.59277Z" fill="white"/>
+                            <path d="M6.37061 13.6302C6.37061 13.1392 5.97259 12.7412 5.48169 12.7412C4.99068 12.7412 4.59277 13.1392 4.59277 13.6302C4.59277 16.8211 7.17936 19.4077 10.3707 19.4077C10.8616 19.4077 11.2596 19.0097 11.2596 18.5187C11.2596 18.0277 10.8616 17.6297 10.3707 17.6297C8.16126 17.6297 6.37061 15.8391 6.37061 13.6302Z" fill="white"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.3014 12.8887C13.9686 12.8887 12.8887 13.9693 12.8887 15.3017V17.5878C12.8887 18.9201 13.9686 19.9996 15.3014 19.9996H17.5873C18.9201 19.9996 20 18.9201 20 17.5878V15.3017C20 13.9693 18.9201 12.8887 17.5873 12.8887H15.3014ZM14.6665 15.3017C14.6665 14.9502 14.9505 14.6667 15.3014 14.6667H17.5873C17.9382 14.6667 18.2222 14.9502 18.2222 15.3017V17.5878C18.2222 17.9382 17.9382 18.2228 17.5873 18.2228H15.3014C14.9505 18.2228 14.6665 17.9382 14.6665 17.5878V15.3017Z" fill="white"/>
+                        </svg>
+                            
+                                                
+                    </div>
+                    <svg class="item-icon-arrow" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="Frame">
+                        <path id="Vector" d="M11.293 14.3203L15.9997 19.0136L20.7063 14.3203" stroke="#98A2B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="accordion-content">
+                    <p>
+                        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                    </p>
+                    <div class="images-container mobile-show">
+                        <!-- Image will be dynamically inserted here -->
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+            <!--------------- item 3 --------------->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <div class="item-img-box">
+                      <span>Title Three</span> 
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g id="database-point">
+                            <g id="Group 283981">
+                            <path id="Vector" d="M5.92707 4.26037C6.01234 4.17509 6.11054 4.11079 6.21543 4.06748C6.53759 3.93413 6.92223 3.99843 7.18418 4.26037L9.85091 6.92705C10.198 7.27415 10.198 7.83692 9.85091 8.18413C9.50381 8.53123 8.94091 8.53123 8.5938 8.18413L7.44453 7.03489V16.4445C7.44453 17.4263 8.24046 18.2222 9.22236 18.2222H20.7782C21.2691 18.2222 21.6671 18.6202 21.6671 19.111C21.6671 19.602 21.2691 20 20.7782 20H9.22236C7.25868 20 5.66671 18.4082 5.66671 16.4445V7.03489L4.51744 8.18413C4.17033 8.53123 3.60755 8.53123 3.26033 8.18413C2.91322 7.83692 2.91322 7.27415 3.26033 6.92705L5.92707 4.26037Z" fill="#FCFCFD"/>
+                            <path id="Vector_2" fill-rule="evenodd" clip-rule="evenodd" d="M9.22241 14.6671C9.22241 15.6489 10.0183 16.4449 11.0002 16.4449H12.7781C13.76 16.4449 14.5559 15.6489 14.5559 14.6671V12.8893C14.5559 11.4166 13.3619 10.2227 11.8891 10.2227C10.4164 10.2227 9.22241 11.4166 9.22241 12.8893V14.6671ZM11.0002 14.6671V12.8893C11.0002 12.3983 11.3983 12.0004 11.8891 12.0004C12.38 12.0004 12.7781 12.399 12.7781 12.8899V14.6671H11.0002Z" fill="#FCFCFD"/>
+                            <path id="Vector_3" fill-rule="evenodd" clip-rule="evenodd" d="M15.4453 14.667C15.4453 15.6488 16.2412 16.4448 17.2231 16.4448H19.001C19.9829 16.4448 20.7788 15.6488 20.7788 14.667V9.33368C20.7788 7.86092 19.5848 6.66699 18.1121 6.66699C16.6393 6.66699 15.4453 7.86092 15.4453 9.33368V14.667ZM18.1121 8.44478C17.6212 8.44478 17.2231 8.84268 17.2231 9.33368V14.667H19.001V9.33368C19.001 8.84268 18.6029 8.44478 18.1121 8.44478Z" fill="#FCFCFD"/>
+                            </g>
+                            </g>
+                        </svg>
+                            
+                            
+                            
+                                                
+                    </div>
+                    <svg class="item-icon-arrow" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="Frame">
+                        <path id="Vector" d="M11.293 14.3203L15.9997 19.0136L20.7063 14.3203" stroke="#98A2B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="accordion-content">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea               </p>
+                    <div class="images-container mobile-show">
+                        <!-- Image will be dynamically inserted here -->
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+            <!--------------- item 4 --------------->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <div class="item-img-box">
+                      <span>Title Four</span> 
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g id="folder-conversion-one">
+                            <g id="Group 283982">
+                            <path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M8.20466 15.6046C8.8049 15.0045 9.6188 14.667 10.4675 14.667H14.7345C15.5832 14.667 16.3972 15.0045 16.9973 15.6046C17.5975 16.2047 17.9347 17.0184 17.9347 17.8675V18.9344C17.9347 19.5222 17.457 19.9999 16.8679 19.9999C16.2788 19.9999 15.8012 19.5222 15.8012 18.9344V17.8675C15.8012 17.5845 15.6888 17.3123 15.4888 17.1123C15.2887 16.9123 15.0174 16.8007 14.7345 16.8007H10.4675C10.1846 16.8007 9.91327 16.9123 9.71324 17.1123C9.5132 17.3123 9.4008 17.5845 9.4008 17.8675V18.9344C9.4008 19.5222 8.92329 19.9999 8.33406 19.9999C7.74497 19.9999 7.26733 19.5222 7.26733 18.9344V17.8675C7.26733 17.0184 7.60454 16.2047 8.20466 15.6046Z" fill="#FCFCFD"/>
+                            <path id="Vector_2" d="M12.6003 12.5336C13.7786 12.5336 14.7337 11.5783 14.7337 10.3999C14.7337 9.22282 13.7786 8.26758 12.6003 8.26758C11.4219 8.26758 10.4668 9.22282 10.4668 10.3999C10.4668 11.5783 11.4219 12.5336 12.6003 12.5336Z" fill="#FCFCFD"/>
+                            <path id="Vector_3" d="M5.13346 7.20053C5.13346 6.61131 5.61111 6.13368 6.2002 6.13368H19.001C19.5901 6.13368 20.0677 6.61131 20.0677 7.20053V13.6002C20.0677 14.1895 19.5901 14.6671 19.001 14.6671H18.5288C18.6431 14.7705 18.7525 14.8794 18.8566 14.995C19.2978 15.4849 19.6252 16.0659 19.8275 16.6933C21.1943 16.3286 22.2012 15.0821 22.2012 13.6002V7.20053C22.2012 5.43288 20.7684 4 19.001 4H6.2002C4.43279 4 3 5.43288 3 7.20053V13.6002C3 15.0821 4.00686 16.3286 5.37365 16.6933C5.576 16.0659 5.90354 15.4849 6.34471 14.995C6.44882 14.8794 6.55822 14.7705 6.67239 14.6671H6.2002C5.61111 14.6671 5.13346 14.1895 5.13346 13.6002V7.20053Z" fill="#FCFCFD"/>
+                            </g>
+                            </g>
+                        </svg>
+                            
+                                                
+                    </div>
+                    <svg class="item-icon-arrow" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="Frame">
+                        <path id="Vector" d="M11.293 14.3203L15.9997 19.0136L20.7063 14.3203" stroke="#98A2B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="accordion-content">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea                </p>
+                    <div class="images-container mobile-show">
+                        <!-- Image will be dynamically inserted here -->
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+            
+    
+        </div>
+        <div class="images-container">
+            <!-- Image will be dynamically inserted here -->
+        </div>
+    </div>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+        var startTimeMS = 0;
+        var currentIndex = -1;
+        var items = jQuery('.accordion-item');
+        var intervalId;
+        var ifclicked;
+        var slideTimer = 7000;
+        var images = ["https://img.freepik.com/premium-photo/refreshing-drink-with-lemon-arrangement_23-2150928910.jpg",
+                      "https://img.freepik.com/free-photo/view-mexican-sotol-drink-with-glass-bottle_23-2150987489.jpg",
+                      "https://img.freepik.com/free-photo/still-life-mezcal-drink-with-maguey-worm_23-2151267836.jpg",
+                      "https://img.freepik.com/free-photo/flat-lay-assortment-tamales-ingredients_23-2148942264.jpg"]; // Array of image paths
+    
+        function updateDisplayedImage(index) {
+            jQuery('.images-container').html(`<img src="${images[index]}" alt="This image is for section ${index+1}" style="">`);
+        }
+    
+        function openNextItem(thisItem,ifclicked) {
+            if(thisItem && ifclicked == "" ){
+                currentIndex = thisItem.index();
+                var currentItem = thisItem;
+            }else if(ifclicked == "clickown"){
+                currentItem = jQuery(".acc-active + .accordion-item") ; //select next accordion-item
+                currentIndex = currentItem.index();
+                currentIndex++;
+                if(currentIndex == 0) {
+                    currentIndex = 0; // Reset index when reaching the end
+                    var currentItem = jQuery(items[currentIndex]);
+                }
+                console.log(currentIndex);
+                console.log(currentItem[0]);
+                
+            }else if(ifclicked == "yes"){
+                currentIndex = thisItem.index();
+                var currentItem = thisItem;
+            }else{
+                if(currentIndex >= items.length - 1) {
+                    currentIndex = -1; // Reset index when reaching the end
+                }
+                currentIndex++;
+                var currentItem = jQuery(items[currentIndex]);
+            }
+            // Close all accordion items
+            jQuery('.accordion-content').slideUp();
+            
+            // Open current item
+            currentItem.find('.accordion-content').slideDown();
+            jQuery('.accordion-item').removeClass("acc-active");
+            currentItem.addClass("acc-active");
+            // Update progress bar
+            currentItem.find('.progress-bar').css('height', '0%');
+            currentItem.find('.progress-bar').animate({height: '100%'}, slideTimer);
+
+            // Update displayed image
+            updateDisplayedImage(currentIndex);
+
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState == 'hidden') {
+                    clearTimeout(intervalId);
+                } else if(document.visibilityState == 'visible') {
+                    
+                }else{
+
+                }
+            });
+            if(ifclicked != "yes" /*|| ifclicked != "clickown"*/){ // if user doesn't click
+                startTimeMS = (new Date()).getTime();
+                // Auto switch to next item after slideTimer
+                intervalId = setTimeout(openNextItem, slideTimer);
+            }
+        }
+        
+        jQuery('.accordion-header').click(function(){
+            clearTimeout(intervalId); // Stop auto switching on manual click
+            
+            if(jQuery(this).parent().hasClass( "acc-active" )){
+                openNextItem(jQuery(this).parent(),"clickown");
+            }else{
+                var parentItem = jQuery(this).closest('.accordion-item');
+                thisItem = jQuery(this).parent();
+                openNextItem(parentItem,"yes"); // Manually trigger next item opening
+
+            }
+
+            /*if(parentItem.is(items[currentIndex])) {//if clicking on currently open item
+            }*/
+        });
+        
+        jQuery('.accordion-header').on( "mouseover", function() {
+            if(jQuery(this).parent().hasClass( "acc-active" )){
+                //stop auto slide
+                clearTimeout(intervalId);
+                jQuery(this).parent().find('.progress-bar').stop();
+            }
+            slideTimeLeft = slideTimer - ( (new Date()).getTime() - startTimeMS );// remaning slide time
+        });
+    
+        jQuery('.accordion-header').on( "mouseout", function() {
+            if(jQuery(this).parent().hasClass( "acc-active" )){
+                // play auto slide
+
+                intervalId = setTimeout(openNextItem, slideTimeLeft);
+                // Update progress bar
+
+
+                itemHeight = jQuery(this).parent().find('.progress-bar').height();
+                jQuery(this).parent().find('.progress-bar').css('height', itemHeight);
+                jQuery(this).parent().find('.progress-bar').animate({height: '100%'}, slideTimeLeft);
+                
+            }
+        });
+        if(ifclicked == "clickown"){
+            currentIndex--;
+            currentItem = jQuery(".accordion-item.acc-active") ;
+            // Start auto switching
+            openNextItem(currentItem);
+        }else{
+            // Start auto switching
+            openNextItem();
+        }
+    });
+
+
+</script>
+</body>
+
+</html>
